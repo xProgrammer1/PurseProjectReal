@@ -64,10 +64,13 @@ public class Purse {
 	 */
 	public void reverse()
 	{
-		ArrayList<String>coinReversed = new ArrayList<String>();
-		for(int i = coins.size();i>0;i--){
-			coinReversed.add(coins.get(i-1));
+		for(int i = purse.coins.size();i>0;i--){
+			purse.coins.add(coins.get(i-1));
 		}
+		for (int j=0; j < purse.coins.size()/2;j++){
+			purse.coins.remove(j);
+		}
+		
 	}
 	
 	/*
@@ -82,16 +85,34 @@ public class Purse {
 	 */
 	public void transfer(Purse other)
 	{
-
+		for (int k=0; k < other.coins.size(); k++){
+			purse.coins.add(other.coins.get(k));
+			other.coins.remove(k);
+		}
+		
 	}
 	
 	/*
 	 * Checks whether the other purse has the same coins in the same order 
 	 * 
 	 */
-	public boolean sameContents(Purse other)
+	public boolean sameContents(Purse other) //don't understand why this is still red. I return boolean value for all cases.
 	{
-		return false;
+		int count1 = 0;
+		if (other.coins.size()==purse.coins.size()){
+			for (int i=0; i<other.coins.size();i++){
+				if (other.coins.get(i)!=purse.coins.get(i)){
+					return false;
+				} else {
+					count1 += 1;
+				}
+			}
+			if (count1>=purse.coins.size()){
+				return true;
+			}
+		}else{
+			return false;
+		}
 	}
 	
 	/*
@@ -105,6 +126,21 @@ public class Purse {
 	 */
 	public boolean sameCoins(Purse other)
 	{
+		if (purse.coins.size()==other.coins.size()){
+			int count = 0;
+			for (int i=0; i<other.coins.size();i++){
+				for (int j=0; j<purse.coins.size();j++){
+					if (other.coins.get(i)==purse.coins.get(j)){
+						count += 1;
+					}
+				}
+			}
+			if (count==purse.coins.size() || count > purse.coins.size()){
+				return true;
+			} else {
+				return false;
+			}
+		}
 		return false; 
 	}
 	
