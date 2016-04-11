@@ -96,7 +96,7 @@ public class Purse {
 	 * Checks whether the other purse has the same coins in the same order 
 	 * 
 	 */
-	public boolean sameContents(Purse other) //don't understand why this is still red. I return boolean value for all cases.
+	public boolean sameContents(Purse other) 
 	{
 		int count1 = 0;
 		if (other.coins.size()==purse.coins.size()){
@@ -110,9 +110,13 @@ public class Purse {
 			if (count1>=purse.coins.size()){
 				return true;
 			}
-		}else{
+			
+		}
+		else{
 			return false;
 		}
+		
+		return false;
 	}
 	
 	/*
